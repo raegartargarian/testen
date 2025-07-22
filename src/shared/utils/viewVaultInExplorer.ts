@@ -1,9 +1,8 @@
-import { GlobalState } from "@/containers/global/types";
 import JSONFile from "@/json/ledger.json";
 import { getNetworkExplorerUrlByServerName } from "./networks";
 
 export const openViewVaultExplorer = () => {
-  const data = JSONFile as GlobalState["data"];
+  const data = JSONFile as any;
   if (!data) {
     throw new Error("No data found");
   }
@@ -13,7 +12,7 @@ export const openViewVaultExplorer = () => {
   window.open(`${explorer}/nft/${vault}`, "_blank");
 };
 export const viewTXInExplorer = (tx: string) => {
-  const data = JSONFile as GlobalState["data"];
+  const data = JSONFile as any;
   if (!data) {
     throw new Error("No data found");
   }

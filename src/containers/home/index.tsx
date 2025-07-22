@@ -1,3 +1,4 @@
+import { openViewVaultExplorer } from "@/shared/utils/viewVaultInExplorer";
 import { BG } from "./bg";
 
 const HomePage = () => {
@@ -31,68 +32,97 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
-        {/* Replace with your SVG: <BG className="w-full h-full object-cover" /> */}
+      <div className="absolute inset-0 opacity-20">
         <BG />
       </div>
-      <div className="container mx-auto">
-        {/* Header */}
-        <header className="relative z-10 flex justify-between items-start p-8">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-              <span className="text-black font-bold text-sm">Humanity AI</span>
-            </div>
-          </div>
 
-          <div className="flex space-x-12">
-            <div className="text-right">
-              <div className="text-xl font-bold">24/7</div>
-              <div className="text-sm text-gray-400">
-                running and redemption
+      {/* Gradient Overlay */}
+
+      <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Header */}
+        <header className="text-center py-12 px-8">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6">Humanity AI</h1>
+            <p className="text-xl md:text-2xl text-gray-300 font-light">
+              <span className="font-semibold text-white">NextG Fund:</span>{" "}
+              Advancing Humanity Through Innovation
+            </p>
+            <div className="mt-8 flex justify-center space-x-8 text-sm text-gray-400">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">6</div>
+                <div>Investment Verticals</div>
               </div>
-            </div>
-            <div className="text-right">
-              <div className="text-xl font-bold">Transparency</div>
-              <div className="text-sm text-gray-400">verifiable on-chain</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">∞</div>
+                <div>Dynamic NFTs</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">24/7</div>
+                <div>Innovation</div>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Main Content */}
-        <div className="relative z-10 px-8">
-          {/* Title Section */}
-          <div className="mb-16">
-            <h1 className="text-6xl font-bold mb-4">Humanity AI</h1>
-            <p className="text-xl text-gray-300">
-              <span className="font-semibold">NextG Fund:</span> Advancing
-              Humanity Through Innovation
-            </p>
+        {/* View NFT Section */}
+        <section className="text-center py-8 px-8">
+          <div className="max-w-6xl mx-auto">
+            <button
+              onClick={() => openViewVaultExplorer()}
+              className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white text-lg font-semibold rounded-xl border border-gray-600 hover:border-gray-500 transition-all duration-300 hover:shadow-xl hover:shadow-gray-900/50 hover:scale-105"
+            >
+              View NFT
+            </button>
           </div>
+        </section>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
-            {templates.map((template, index) => (
-              <div
-                key={index}
-                onClick={() => handleCardClick(template.url)}
-                className="bg-gray-800 bg-opacity-80 backdrop-blur-sm  p-8 cursor-pointer transition-all duration-300 hover:bg-opacity-90 hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-gray-500 rounded-2xl"
-              >
-                <div className="h-60 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2 text-white">
-                      {template.title}
-                    </h3>
-                    <div className="w-12 h-1 bg-white mb-4"></div>
+        {/* Main Grid */}
+        <main className="flex-1 flex items-center justify-center px-8 pb-12">
+          <div className="max-w-6xl w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+              {templates.map((module) => (
+                <div
+                  key={module.url}
+                  onClick={() => handleCardClick(module.url)}
+                  className={`group relative bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-80 cursor-pointer transition-all duration-500 hover:scale-105 hover:border-gray-500 
+                     hover:shadow-2xl hover:shadow-purple-500/20"
+                  `}
+                >
+                  {/* Content */}
+                  <div className="relative z-10 h-full flex flex-col justify-center">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors duration-300">
+                        {module.title}
+                      </h3>
+                      <p className="text-lg text-blue-400 font-medium mb-3">
+                        {module.subtitle}
+                      </p>
+                    </div>
+
+                    <div className="flex justify-end mt-6">
+                      <div className="text-blue-400 group-hover:translate-x-1 transition-transform duration-300">
+                        →
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="mt-auto">
-                    <p className="text-gray-300 text-sm">{template.subtitle}</p>
+                  {/* Hover Effects */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div className="absolute bottom-4 left-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-300"></div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="text-center py-8 px-8 border-t border-gray-800">
+          <p className="text-gray-500 text-sm">
+            Dynamic NFT Platform • Powered by Innovation • Built for the Future
+          </p>
+        </footer>
       </div>
     </div>
   );
