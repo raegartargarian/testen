@@ -31,7 +31,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-30">
         {/* Replace with your SVG: <BG className="w-full h-full object-cover" /> */}
         <BG />
       </div>
@@ -75,9 +75,9 @@ const HomePage = () => {
               <div
                 key={index}
                 onClick={() => handleCardClick(template.url)}
-                className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-8 cursor-pointer transition-all duration-300 hover:bg-opacity-90 hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-gray-500"
+                className="bg-gray-800 bg-opacity-80 backdrop-blur-sm  p-8 cursor-pointer transition-all duration-300 hover:bg-opacity-90 hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-gray-500 rounded-2xl"
               >
-                <div className="h-48 flex flex-col justify-between">
+                <div className="h-60 flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl font-bold mb-2 text-white">
                       {template.title}
