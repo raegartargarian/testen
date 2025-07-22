@@ -1,0 +1,979 @@
+// src/styles/main.scss
+@use "utilities";
+@use "base";
+@use "colors";
+@use "typography";
+@use "icons";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-color: hsl(32.75, 93.16%, 54.12%);
+    --primary-color-light: hsl(32.75, 93.16%, 64.12%);
+    --primary-color-dark: hsl(32.75, 93.16%, 44.12%);
+    --primary-white: #FFFFFF;
+    --primary-black: #000000;
+    --primary-dark: #1A1A1A;
+    --bg-secondary: #F5F5F5;
+    --text-gray: #666666;
+    --quote-bg: #EEEEEE;
+  }
+
+  body {
+    @apply bg-black text-white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  // Header Styles
+  .header-main {
+    @apply absolute top-0 left-0 right-0 z-50 bg-transparent;
+  }
+
+  .header-container {
+    @apply container mx-auto px-4 py-4 lg:py-6 flex items-center justify-between;
+  }
+
+  .header-logo {
+    @apply flex-shrink-0;
+  }
+
+  .logo-text {
+    @apply text-xl lg:text-2xl font-bold;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+  }
+
+  .logo-harry {
+    @apply text-white;
+  }
+
+  .header-nav {
+    @apply hidden lg:flex items-center space-x-8;
+  }
+
+  .header-nav-item {
+    @apply text-sm font-semibold tracking-wider transition-colors text-white;
+    letter-spacing: 0.1em;
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  .header-nav-item-active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 4px;
+  }
+
+  .header-social {
+    @apply hidden md:flex items-center space-x-4;
+  }
+
+  .social-icon {
+    @apply text-white transition-colors duration-300 transform hover:scale-110;
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  .header-mobile {
+    @apply lg:hidden;
+  }
+
+  .mobile-menu-trigger {
+    @apply text-white focus:outline-none;
+  }
+
+  .mobile-menu-content {
+    @apply bg-black;
+    border: 1px solid var(--primary-color);
+  }
+
+  .mobile-menu-label {
+    @apply text-white;
+  }
+
+  .mobile-menu-separator {
+    @apply bg-gray-700;
+  }
+
+  .mobile-menu-item {
+    @apply focus:bg-gray-700;
+  }
+
+  .mobile-menu-link {
+    @apply text-white w-full;
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  // Hero Section Styles
+  .hero-section {
+    @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
+  }
+
+  .hero-bg {
+    @apply absolute inset-0 z-0;
+  }
+
+  .hero-bg-image {
+    @apply w-full h-full object-cover;
+    filter: brightness(0.4) contrast(1.1);
+  }
+
+  .hero-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80;
+  }
+
+  .hero-content {
+    @apply relative z-10 w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center;
+    min-height: 100vh;
+  }
+
+  .hero-laurels {
+    @apply grid grid-cols-3 gap-4 lg:flex lg:flex-col lg:gap-6;
+    order: 1;
+    
+    @media (max-width: 1024px) {
+      order: 3;
+      grid-cols: 4;
+    }
+  }
+
+  .laurel {
+    @apply flex justify-center;
+  }
+
+  .laurel-circle {
+    @apply w-20 h-20 lg:w-24 lg:h-24 rounded-full border-2 border-white/80 flex items-center justify-center p-2;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .laurel-text {
+    @apply text-center text-white;
+  }
+
+  .laurel-name {
+    @apply text-xs font-bold uppercase;
+    font-size: 0.6rem;
+    line-height: 1;
+  }
+
+  .laurel-award {
+    @apply text-xs mt-1;
+    font-size: 0.5rem;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  .laurel-year {
+    @apply text-xs font-medium;
+    font-size: 0.6rem;
+    line-height: 1;
+  }
+
+  .hero-title-section {
+    @apply text-center;
+    order: 2;
+  }
+
+  .hero-director-credit {
+    @apply text-sm lg:text-base uppercase tracking-wider mb-4 text-gray-300 font-medium;
+  }
+
+  .hero-main-title {
+    @apply text-6xl lg:text-8xl xl:text-9xl font-black text-white mb-2;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+  }
+
+  .hero-subtitle-name {
+    @apply text-4xl lg:text-6xl xl:text-7xl font-light italic;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: -10px;
+    color: var(--primary-color);
+  }
+
+  .hero-poster {
+    @apply flex justify-center lg:justify-end;
+    order: 3;
+    
+    @media (max-width: 1024px) {
+      order: 1;
+    }
+  }
+
+  .poster-image {
+    @apply w-64 lg:w-80 xl:w-96 rounded-lg shadow-2xl;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+  }
+
+  // Trailer Section
+  .trailer-section {
+    @apply py-16 bg-gray-50;
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  }
+
+  .trailer-container {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .trailer-header {
+    @apply text-center mb-12;
+  }
+
+  .trailer-title {
+    @apply text-3xl lg:text-4xl font-bold text-black mb-4;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .video-player-container {
+    @apply relative aspect-video bg-black rounded-xl overflow-hidden shadow-2xl;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .video-poster-wrapper {
+    @apply relative w-full h-full;
+  }
+
+  .video-poster-image {
+    @apply w-full h-full object-cover absolute inset-0;
+  }
+
+  .video-player {
+    @apply w-full h-full object-cover;
+    background: #000;
+    
+    &::-webkit-media-controls-panel {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    &::-webkit-media-controls-play-button,
+    &::-webkit-media-controls-start-playback-button {
+      background-color: rgba(255, 140, 0, 0.8);
+      border-radius: 50%;
+    }
+  }
+
+  .video-overlay {
+    @apply absolute inset-0 flex items-center justify-between p-8 bg-black/40;
+    backdrop-filter: blur(2px);
+  }
+
+  .video-info {
+    @apply text-white;
+  }
+
+  .video-title {
+    @apply text-2xl lg:text-3xl font-bold mb-2;
+  }
+
+  .video-artist {
+    @apply text-lg opacity-80;
+  }
+
+  .play-button {
+    @apply text-white p-4 lg:p-6 rounded-full transition-all duration-300 transform hover:scale-110;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 20px hsla(32.75, 93.16%, 54.12%, 0.4);
+    
+    &:hover {
+      background-color: var(--primary-color-dark);
+    }
+  }
+
+  // Quote Sections
+  .quote-section {
+    @apply py-20 px-4;
+    background: var(--quote-bg);
+  }
+
+  .quote-container {
+    @apply max-w-5xl mx-auto text-center relative;
+  }
+
+  .quote-mark-left,
+  .quote-mark-right {
+    @apply absolute text-8xl lg:text-9xl font-serif;
+    color: rgba(0, 0, 0, 0.1);
+    font-family: Georgia, serif;
+  }
+
+  .quote-mark-left {
+    top: -2rem;
+    left: -2rem;
+  }
+
+  .quote-mark-right {
+    bottom: -2rem;
+    right: -2rem;
+  }
+
+  .director-quote {
+    @apply text-2xl lg:text-4xl xl:text-5xl font-bold leading-tight text-black;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .quote-highlight {
+    border-bottom: 4px solid var(--primary-color);
+    padding-bottom: 4px;
+    background: linear-gradient(to right, transparent 50%, hsla(32.75, 93.16%, 54.12%, 0.2) 50%);
+  }
+
+  .quote-author {
+    @apply text-sm lg:text-base uppercase tracking-wider text-gray-600 mt-8 font-medium;
+    letter-spacing: 0.2em;
+  }
+
+  // Director's Statement Section
+  .director-statement-section {
+    @apply py-20 bg-white text-black;
+  }
+
+  .director-content {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto;
+  }
+
+  .director-text-section {
+    @apply lg:col-span-2;
+  }
+
+  .director-heading {
+    @apply text-4xl lg:text-5xl xl:text-6xl font-black uppercase mb-12;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--primary-color);
+  }
+
+  .director-quote-block {
+    @apply mb-8 p-6 border-l-4 bg-orange-50;
+    border-left-color: var(--primary-color);
+  }
+
+  .director-opening-quote {
+    @apply text-lg lg:text-xl font-medium italic text-gray-800 leading-relaxed mb-4;
+  }
+
+  .quote-attribution {
+    @apply text-sm font-bold uppercase tracking-wider;
+    color: var(--primary-color-dark);
+  }
+
+  .director-body-text {
+    @apply space-y-6;
+    
+    p {
+      @apply text-base lg:text-lg leading-relaxed text-gray-700;
+    }
+  }
+
+  .director-image-section {
+    @apply flex justify-center lg:justify-end;
+  }
+
+  .director-photo {
+    @apply w-full max-w-sm rounded-lg shadow-lg;
+  }
+
+  // About Film Section
+  .about-film-section {
+    @apply py-20 bg-black text-white;
+  }
+
+  .about-content {
+    @apply max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12;
+  }
+
+  .about-title {
+    @apply text-4xl lg:text-6xl xl:text-7xl font-black uppercase;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--primary-color);
+  }
+
+  .about-text {
+    @apply lg:col-span-2 space-y-6;
+    
+    p {
+      @apply text-base lg:text-lg leading-relaxed text-gray-300;
+    }
+  }
+
+  .about-description {
+    @apply text-xl lg:text-2xl font-medium text-white leading-relaxed;
+  }
+
+  .cast-list {
+    color: var(--primary-color);
+  }
+
+  .trailer-embed {
+    @apply mt-16;
+  }
+
+  .embed-container {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .embed-placeholder {
+    @apply bg-gray-900 rounded-lg p-8 text-center border border-gray-700;
+  }
+
+  .embed-title {
+    @apply text-xl font-bold mb-4;
+  }
+
+  .embed-controls {
+    @apply flex justify-center gap-4;
+  }
+
+  .embed-watch-later,
+  .embed-share {
+    @apply px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition-colors;
+  }
+
+  // Second Quote Section
+  .quote-section-two {
+    @apply py-20 bg-gray-100 text-black;
+  }
+
+  .quote-two-content {
+    @apply max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center;
+  }
+
+  .quote-two-text {
+    @apply relative;
+  }
+
+  .quote-mark-large {
+    @apply text-6xl lg:text-8xl font-serif absolute -top-6 -left-4;
+    color: hsla(32.75, 93.16%, 54.12%, 0.3);
+  }
+
+  .quote-mark-large-right {
+    @apply text-6xl lg:text-8xl font-serif absolute -bottom-6 -right-4;
+    color: hsla(32.75, 93.16%, 54.12%, 0.3);
+  }
+
+  .quote-two-main {
+    @apply text-xl lg:text-3xl xl:text-4xl font-bold leading-tight;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .quote-highlight-orange {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color-light);
+    text-decoration-thickness: 4px;
+  }
+
+  .quote-two-author {
+    @apply text-sm lg:text-base uppercase tracking-wider text-gray-600 mt-6 font-medium;
+    letter-spacing: 0.2em;
+  }
+
+  .quote-two-image {
+    @apply flex justify-center;
+  }
+
+  .quote-portrait {
+    @apply w-full max-w-md rounded-lg shadow-xl;
+  }
+
+  .about-film-footer {
+    @apply py-16 bg-black text-white;
+  }
+
+  .footer-content {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .footer-about-title {
+    @apply text-3xl lg:text-4xl font-black uppercase mb-8;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+  }
+
+  .footer-description {
+    @apply text-base lg:text-lg leading-relaxed text-gray-300;
+  }
+
+  // Purchase Section
+  .purchase-section {
+    @apply py-20 bg-gradient-to-b from-gray-900 to-black;
+  }
+
+  .purchase-content {
+    @apply max-w-2xl mx-auto;
+  }
+
+  .purchase-title {
+    @apply text-3xl lg:text-4xl font-bold text-white mb-6;
+  }
+
+  .purchase-description {
+    @apply text-lg text-gray-300 mb-8;
+  }
+
+  .purchase-details {
+    @apply grid grid-cols-2 gap-8 mb-8;
+  }
+
+  .purchase-stat {
+    @apply text-center;
+  }
+
+  .stat-label {
+    @apply text-sm text-gray-400 mb-2;
+  }
+
+  .stat-value {
+    @apply text-xl lg:text-2xl font-bold;
+    color: var(--primary-color);
+  }
+
+  .purchase-cta-button {
+    @apply text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-color-dark));
+    box-shadow: 0 10px 25px hsla(32.75, 93.16%, 54.12%, 0.3);
+    
+    &:hover {
+      background: linear-gradient(to right, var(--primary-color-dark), hsl(32.75, 93.16%, 34.12%));
+    }
+  }
+
+  // Verification Section Styles
+  .verification-section {
+    @apply py-16 bg-gray-900 border-t border-gray-800;
+  }
+
+  .verification-title {
+    @apply text-2xl lg:text-3xl font-bold text-white mb-4;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .verification-description {
+    @apply text-lg text-gray-300 mb-8 max-w-2xl mx-auto;
+  }
+
+  .verification-buttons {
+    @apply flex flex-col sm:flex-row gap-4 justify-center;
+  }
+
+  .verification-button {
+    @apply bg-transparent text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105;
+    border: 2px solid var(--primary-color);
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: black;
+    }
+  }
+
+  // Footer Styles
+  .footer-main {
+    @apply bg-black text-white;
+  }
+
+  .newsletter-section {
+    @apply py-16 bg-gradient-to-b from-black to-gray-900 border-t border-gray-800;
+  }
+
+  .newsletter-content {
+    @apply max-w-6xl mx-auto text-center;
+  }
+
+  .newsletter-title {
+    @apply text-2xl lg:text-3xl font-bold mb-4 uppercase tracking-wider;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+  }
+
+  .newsletter-description {
+    @apply text-lg text-gray-300 mb-8;
+  }
+
+  .newsletter-form {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .form-row {
+    @apply flex flex-col md:flex-row gap-4 justify-center items-center;
+  }
+
+  .form-input {
+    @apply px-4 py-3 bg-white text-black rounded-lg font-medium placeholder-gray-500 focus:outline-none focus:ring-2;
+    min-width: 160px;
+    
+    &:focus {
+      --tw-ring-color: var(--primary-color);
+    }
+  }
+
+  .form-input-email {
+    @apply flex-1 max-w-xs;
+  }
+
+  .form-submit {
+    @apply px-8 py-3 text-white rounded-lg font-bold transition-colors duration-300 transform hover:scale-105;
+    background-color: var(--primary-color);
+    
+    &:hover {
+      background-color: var(--primary-color-dark);
+    }
+  }
+
+  .footer-content {
+    @apply py-12 bg-black;
+  }
+
+  .footer-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+  }
+
+  .footer-brand {
+    @apply space-y-6;
+  }
+
+  .footer-logo {
+    @apply text-2xl lg:text-3xl font-bold;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+  }
+
+  .footer-logo-harry {
+    @apply text-white;
+  }
+
+  .footer-navigation {
+    @apply space-y-4;
+  }
+
+  .footer-nav-title {
+    @apply text-lg font-bold uppercase tracking-wider;
+    color: var(--primary-color);
+  }
+
+  .footer-nav {
+    @apply grid grid-cols-2 gap-2;
+  }
+
+  .footer-nav-link {
+    @apply text-sm text-white transition-colors duration-300 uppercase tracking-wide;
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  .footer-bottom {
+    @apply border-t border-gray-800 mt-8 pt-8 text-center;
+  }
+
+  .footer-copyright {
+    @apply text-sm text-gray-400;
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    .hero-main-title {
+      @apply text-4xl;
+    }
+
+    .hero-subtitle-name {
+      @apply text-2xl;
+    }
+
+    .director-quote {
+      @apply text-xl;
+    }
+
+    .quote-two-main {
+      @apply text-lg;
+    }
+
+    .about-title {
+      @apply text-3xl;
+    }
+
+    .laurel-circle {
+      @apply w-16 h-16;
+    }
+  }
+
+  // Legacy movie styles
+  .movie-section {
+    @apply py-16 px-4;
+  }
+  
+  .movie-quote {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-center;
+  }
+  
+  .movie-quote-author {
+    @apply text-sm uppercase tracking-wider text-gray-600 mt-4;
+  }
+  
+  .festival-award {
+    @apply text-white text-center p-4;
+  }
+  
+  .hero-title {
+    @apply text-6xl md:text-7xl lg:text-8xl font-bold text-white;
+  }
+  
+  .hero-subtitle {
+    @apply text-2xl md:text-3xl text-yellow-400 font-light;
+  }
+  
+  .purchase-button {
+    @apply bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full transition-colors;
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-500 uppercase;
+  }
+}
+
+// Third-party overrides
+.w3a-modal {
+  background: rgba(0, 0, 0, 0.99);
+}
+
+.w3a-header__button {
+  display: none !important;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+@layer utilities {
+  .u-page {
+    @apply w-full;
+  }
+
+  .u-bg {
+    background-color: black;
+  }
+
+  .u-bg-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+  }
+
+  .u-gradient-txt {
+    display: block;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(91deg, #FFD700 10.57%, #000000 94.89%);
+    background-clip: text;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-black));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-gradient {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  }
+
+  .subheader {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  .regular-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+
+  .text-shadowed {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.675);
+  }
+
+  .bg-grad {
+    @apply bg-gradient-to-r from-primary-dark via-gray-850 to-primary-dark;
+  }
+  // Additional styles to add to your main.scss file
+
+@layer components {
+  // Header Right Section (Auth + Social)
+  .header-right {
+    @apply flex items-center gap-6;
+  }
+
+  // Authentication Section Styles
+  .header-auth {
+    @apply relative flex items-center;
+  }
+
+  .auth-loading {
+    @apply flex items-center justify-center;
+  }
+
+  .loading-spinner {
+    @apply w-5 h-5 border-2 border-gray-300 border-t-transparent rounded-full animate-spin;
+    border-top-color: var(--primary-color);
+  }
+
+  .login-button {
+    @apply px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-color-dark));
+    color: var(--primary-black);
+    border: none;
+    
+    &:hover {
+      background: linear-gradient(to right, var(--primary-color-dark), hsl(32.75, 93.16%, 34.12%));
+    }
+    
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+      transform: none;
+    }
+  }
+
+  // Wallet Display Styles
+  .wallet-trigger {
+    @apply flex items-center gap-2 px-3 py-2 rounded-lg border border-white/20 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5 focus:outline-none focus:ring-2;
+    
+    &:focus {
+      --tw-ring-color: var(--primary-color);
+    }
+  }
+
+  .wallet-display {
+    @apply flex items-center gap-2;
+  }
+
+  .wallet-address {
+    @apply text-sm font-medium font-mono;
+  }
+
+  // Wallet Dropdown Menu Styles
+  .wallet-menu-content {
+    @apply bg-black border border-gray-700 text-white min-w-64;
+  }
+
+  .wallet-menu-label {
+    @apply text-white font-semibold;
+  }
+
+  .wallet-address-full {
+    @apply focus:bg-gray-800;
+  }
+
+  .address-full {
+    @apply font-mono text-xs break-all text-gray-300;
+  }
+
+  .logout-item {
+    @apply text-red-400 focus:bg-red-500/10 focus:text-red-300;
+  }
+
+  // Auth Error Styles
+  .auth-error {
+    @apply absolute top-full left-0 mt-1 p-2 bg-red-900 border border-red-700 rounded text-xs z-50;
+    min-width: 200px;
+  }
+
+  .error-text {
+    @apply text-red-200;
+  }
+
+  // Mobile Authentication Styles
+  .mobile-wallet-item {
+    @apply focus:bg-gray-700;
+  }
+
+  .mobile-wallet-display {
+    @apply flex items-center gap-2 text-white font-mono text-sm;
+  }
+
+  .mobile-logout-item {
+    @apply text-red-400 focus:bg-red-500/10 focus:text-red-300;
+  }
+
+  .mobile-login-item {
+    @apply text-white focus:bg-gray-700;
+    
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+    }
+  }
+
+  // Updated Header Container to accommodate auth section
+  .header-container {
+    @apply container mx-auto px-4 py-4 lg:py-6 flex items-center justify-between;
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .header-right {
+      @apply hidden;
+    }
+    
+    .header-auth {
+      @apply flex;
+    }
+    
+    .auth-loading,
+    .login-button {
+      @apply text-xs px-3 py-1;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .header-social {
+      @apply hidden md:flex;
+    }
+    
+    .header-auth {
+      @apply mr-4;
+    }
+  }
+
+  // Enhanced mobile menu for better auth integration
+  .mobile-menu-content {
+    @apply bg-black min-w-64;
+    border: 1px solid var(--primary-color);
+  }
+
+  // Wallet connection states
+  .wallet-connecting {
+    @apply opacity-75 cursor-wait;
+  }
+
+  .wallet-connected {
+    @apply border-green-500/30 bg-green-500/5;
+  }
+
+  .wallet-error {
+    @apply border-red-500/30 bg-red-500/5;
+  }
+}
+}
