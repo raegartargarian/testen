@@ -1,27 +1,36 @@
+import Artech from "@/assets/images/artech.png";
+import Curax from "@/assets/images/curax.png";
+import Gambino from "@/assets/images/gambino.png";
+import Harry from "@/assets/images/harry.png";
+import Logo from "@/assets/images/logo.png";
 import { openViewVaultExplorer } from "@/shared/utils/viewVaultInExplorer";
 import { BG } from "./bg";
 
 const HomePage = () => {
   const templates = [
     {
-      title: "Godfather Template",
+      title: "Gambino Template",
       subtitle: "Classic Cinema Experience",
-      url: "https://bafybeigpavv565gyy6b5axxg5lpwwisbhe3tr2zaa7j36mc2ft2rwcllxy.ipfs.pub.test.filedgr.network/#/",
+      url: "https://bafybeibcwf6swwyvuqbcdltvdq3fgdrdpzni2fww3kvpywi3di36hlpvwe.ipfs.pub.test.filedgr.network/#/",
+      image: Gambino,
     },
     {
       title: "Harry Template",
       subtitle: "Documentary Excellence",
-      url: "https://bafybeibtl7wtvhw5t6xztlzty73kxpprbehemptej555eievyjgvupo3xe.ipfs.pub.test.filedgr.network/#/",
+      url: "https://bafybeidehbztt5gmfwcdal6mujw6orfwr7g7tjcqfmpx4gwgdllyjhpipa.ipfs.pub.test.filedgr.network/#/",
+      image: Harry,
     },
     {
       title: "Artech Template",
       subtitle: "Modern Art & Technology",
-      url: "https://bafybeibtl7wtvhw5t6xztlzty73kxpprbehemptej555eievyjgvupo3xe.ipfs.pub.test.filedgr.network/#/",
+      url: "https://bafybeidzhgx2nshuilfg6r4crpd4v5y6hyjccypvegskf5wdrwzco6pcia.ipfs.pub.test.filedgr.network/#/",
+      image: Artech,
     },
     {
       title: "Curax Template",
       subtitle: "Innovation & Research",
       url: "https://bafybeieoraupgjilerly4rwmkr5jyjewjlkarvfbhmx2jwrjfewgixibfi.ipfs.pub.test.filedgr.network/#/",
+      image: Curax,
     },
   ];
 
@@ -42,6 +51,14 @@ const HomePage = () => {
         {/* Header */}
         <header className="text-center py-12 px-8">
           <div className="max-w-6xl mx-auto">
+            {/* Logo */}
+            <div className="flex justify-center mb-6">
+              <img
+                src={Logo}
+                alt="Humanity AI Logo"
+                className="h-16 md:h-28 w-auto"
+              />
+            </div>
             <h1 className="text-6xl md:text-7xl font-bold mb-6">Humanity AI</h1>
             <p className="text-xl md:text-2xl text-gray-300 font-light">
               <span className="font-semibold text-white">NextG Fund:</span>{" "}
@@ -85,9 +102,18 @@ const HomePage = () => {
                   key={module.url}
                   onClick={() => handleCardClick(module.url)}
                   className={`group relative bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 h-80 cursor-pointer transition-all duration-500 hover:scale-105 hover:border-gray-500 
-                     hover:shadow-2xl hover:shadow-purple-500/20"
+                     hover:shadow-2xl hover:shadow-purple-500/20 overflow-hidden"
                   `}
                 >
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                    style={{ backgroundImage: `url(${module.image})` }}
+                  ></div>
+
+                  {/* Dark Overlay */}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all duration-500"></div>
+
                   {/* Content */}
                   <div className="relative z-10 h-full flex flex-col justify-center">
                     <div>
